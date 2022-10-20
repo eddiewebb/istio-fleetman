@@ -1,15 +1,34 @@
-**Note: updated for version 1.15 on 27 September 2022**
+## Credits
 
-This version of Istio *should* support Apple M1 processors, your feedback will be very much appreciated on this.
+This kick ass content is from https://github.com/DickChesterwood/istio-fleetman and his course (highly recommended) is on Udemy.
 
-For support, please visit the support service on the platform you're following the course on (Udemy or VPP). I generally check every day.
+This is guide is largely notes from my experience, including some adjustments to deployments.
 
-Now available at VirtualPairProgrammers.com and Udemy!
 
-Udemy: https://www.udemy.com/course/istio-hands-on-for-kubernetes/?referralCode=36E4FA521FB5D6124156
+## CCI Training
 
-VirtualPairProgrammers: https://virtualpairprogrammers.com/training-courses/Istio-training.html
+1. Clone this repo (fork not needed, but optional)
+2. Install `minikube`
+3. Jump into `_coursework`
 
-Aim: make Istio understandable - it's not that hard. I don't mention TCP/IP stack levels once. Or the CNCF.
 
-There will be further material added later [I'm working on this, but in slower time!]
+** NOTE: MACOS DOCKER USERS **
+
+Docker does not support ports routing so the `minikube ip` is useless.
+
+instead use `minikube service <service-name> --url &` (must run in background) which spits out a tunnel URL to use.
+
+```
+ minikube service kiali --url -n istio-system &
+ minikube service fleetman-webapp --url &
+ minikube service tracing  --url -n istio-system & # you can view embed jaeger traces in kilai too
+ minikube service grafana  --url -n istio-system &
+ ...
+```
+** to quickly kill all 5 background jobs **
+```
+for i in {1..5};do
+ kill %$i
+done
+
+```

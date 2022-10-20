@@ -10,11 +10,11 @@ spec:
     - route:
         - destination:
             host: fleetman-staff-service.default.svc.cluster.local # The Target DNS name
-            subset: safe-group  # The name defined in the DestinationRule
+            subset: current-group  # The name defined in the DestinationRule
           weight: 90
         - destination:
             host: fleetman-staff-service.default.svc.cluster.local # The Target DNS name
-            subset: risky-group  # The name defined in the DestinationRule
+            subset: next-group  # The name defined in the DestinationRule
           weight: 10
 ---
 kind: DestinationRule       # Defining which pods should be part of each subset
@@ -26,8 +26,8 @@ spec:
   host: fleetman-staff-service # Service
   subsets:
     - labels:   # SELECTOR.
-        version: safe # find pods with label "safe"
-      name: safe-group
+        version: current # find pods with label "current"
+      name: current-group
     - labels:
-        version: risky
-      name: risky-group
+        version: next
+      name: next-group

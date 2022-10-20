@@ -124,7 +124,7 @@ spec:
     metadata:
       labels:
         app: staff-service
-        version: safe
+        version: current
     spec:
       containers:
       - image: richardchesterwood/istio-fleetman-staff-service:6-placeholder
@@ -139,7 +139,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: staff-service-risky-version
+  name: staff-service-next-version
 spec:
   selector:
     matchLabels:
@@ -149,7 +149,7 @@ spec:
     metadata:
       labels:
         app: staff-service
-        version: risky
+        version: next
     spec:
       containers:
       - name: staff-service
